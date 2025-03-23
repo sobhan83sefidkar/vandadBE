@@ -18,7 +18,7 @@ export const checkLogin = async (req, res, next) => {
 
 const verifyUser = async (token) => {
     try {
-        const decoded = jwt.verify(token, process.env.JWT)
+        const decoded = jwt.verify(token, process.env.jwt)
 
         const user = await User.findOne({ _id: decoded.id }).select("-password")
         if (!user) {
