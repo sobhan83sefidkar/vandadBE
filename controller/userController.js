@@ -49,7 +49,7 @@ export const login = async (req, res) => {
             id: user._id,
             admin: user.admin
         }
-        const token = await jwt.sign(tokenData, process.env.JWT, { expiresIn: "1d" })
+        const token = await jwt.sign(tokenData, process.env.jwt, { expiresIn: "1d" })
 
         const tokenOptions = {
             httpOnly: true,
