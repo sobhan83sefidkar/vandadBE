@@ -52,7 +52,6 @@ export const login = async (req, res) => {
         const token = await jwt.sign(tokenData, process.env.jwt, { expiresIn: "1d" })
 
         const tokenOptions = {
-            httpOnly: true,
             sameSite: 'none',
             maxAge: 1000 * 60 * 30,
             secure: true,
