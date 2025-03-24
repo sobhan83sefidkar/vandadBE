@@ -53,9 +53,10 @@ export const login = async (req, res) => {
 
         const tokenOptions = {
             httpOnly: true,
-            sameSite: 'none',
+            sameSite: 'strict',
             maxAge: 1000 * 60 * 30,
             secure: true,
+            path: '/'
         }
 
         res.status(200).cookie("token", token, tokenOptions).json({ notification: { success: true, message: "با موفقیت وارد شدید" , username : user.username , admin : user.admin } })
@@ -67,11 +68,12 @@ export const logout = async (req , res) => {
     try{
         const tokenOptions = {
             httpOnly: true,
-            sameSite: 'none',
+            sameSite: 'strict',
             maxAge: 1000 * 60 * 30,
             secure: true,
+            path: '/'
         }
-        res.status(200).cookie("token", "" , tokenOptions).json({ notification: { success: true, message: "شما از حساب خود خارج شدید" } })
+        res.status(200).clearCookie("token" , tokenOptions).json({ notification: { success: true, message: "شما از حساب خود خارج شدید" } })
     }catch(err){
         res.status(500).json({ notification: { success: false , message: err.message || err}  })
     }
