@@ -71,7 +71,7 @@ export const logout = async (req , res) => {
             maxAge: 1000 * 60 * 30,
             secure: true,
         }
-        res.status(200).clearCookie("token" , tokenOptions).json({ notification: { success: true, message: "شما از حساب خود خارج شدید" } })
+        res.status(200).cookie("token" , "" , tokenOptions).json({ notification: { success: true, message: "شما از حساب خود خارج شدید" } })
     }catch(err){
         res.status(500).json({ notification: { success: false , message: err.message || err}  })
     }
