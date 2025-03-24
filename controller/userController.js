@@ -65,12 +65,8 @@ export const login = async (req, res) => {
 }
 export const logout = async (req , res) => {
     try{
-        const tokenOptions = {
-            http: true,
-            Secure: true,
-            SameSite: "none",
-        }
-        res.status(200).cookie("token" , "" , tokenOptions).json({ notification: { success: true, message: "شما از حساب خود خارج شدید" } })
+          res.clearCookie('token')
+          res.redirect('/login')
     }catch(err){
         res.status(500).json({ notification: { success: false , message: err.message || err}  })
     }
