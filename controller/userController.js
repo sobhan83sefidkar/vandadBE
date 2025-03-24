@@ -54,7 +54,6 @@ export const login = async (req, res) => {
         const tokenOptions = {
             httpOnly: true,
             sameSite: 'none',
-            maxAge: 1000 * 60 * 30,
             secure: true,
         }
 
@@ -65,7 +64,12 @@ export const login = async (req, res) => {
 }
 export const logout = async (req , res) => {
     try{
-          res.status(200).clearCookie("token").json({ notification: { success: true, message: "شما از حساب خود خارج شدید" } })
+          const tokenOptions = {
+              httpOnly: true,
+              sameSite: 'none',
+              secure: true,
+          }
+          res.status(200).clearCookie("token" , tokenOptions).json({ notification: { success: true, message: "شما از حساب خود خارج شدید" } })
     }catch(err){
         res.status(500).json({ notification: { success: false , message: err.message || err}  })
     }
