@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 import User from "../models/userModel.js"
 
 export const checkLogin = async (req, res, next) => {
-    const { token } = req.cookies
+    const { auth-token } = req.cookies
     if (!token) return res.json({ notification: { message: "you need to login", error: true } })
     try {
         const user = await verifyUser(token)
