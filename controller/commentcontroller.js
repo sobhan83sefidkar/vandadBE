@@ -16,7 +16,7 @@ export const addComment = async (req, res) => {
 
 export const getComment = async (req, res) => {
     try {
-        const comment = (await Comment.find().populate('articleId').exec())
+        const comment = (await Comment.find().populate('articleId').sort({ _id: -1 }).exec())
 
         res.status(200).json(comment)
     } catch (err) {
