@@ -13,7 +13,7 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin: ["https://vandad3.vercel.app"],
+    origin: ["https://vandad4.vercel.app"],
     methods: ["POST", "GET", "DELETE", "PUT", "PATCH"],
     credentials: true,
     optionsSuccessStatus: 200,
